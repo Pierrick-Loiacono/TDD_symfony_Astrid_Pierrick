@@ -10,7 +10,9 @@ class DefaultControllerTest extends WebTestCase {
         $client = static::createClient();
         $client->request('GET', '/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertSelectorExists('a[href="/login"]');
     }
+
 
 
 }
