@@ -1,6 +1,7 @@
 <?php
 namespace App\Tests\Entity;
 
+use App\Entity\Lieu;
 use PHPUnit\Framework\TestCase;
 
 
