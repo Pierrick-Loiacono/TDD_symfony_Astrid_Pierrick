@@ -24,4 +24,14 @@ class LieuTest extends TestCase {
         $this->assertEquals("France", $this->lieu->getNom());
     }
 
+    public function tesLieuLongitude(){
+        $this->lieu->setLongitude(55.60);
+        $this->assertEquals(55.60, $this->lieu->getLongitude());
+    }
+
+    public function testLieuLatitude(){
+        $this->lieu->setLatitude(55.60);
+        $this->assertEquals(55.60, $this->lieu->getLatitude());
+    }
+
 }
