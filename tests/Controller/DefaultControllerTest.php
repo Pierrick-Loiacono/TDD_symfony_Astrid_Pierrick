@@ -14,6 +14,7 @@ class DefaultControllerTest extends WebTestCase {
 
         $this->assertSelectorExists('a[href="/login"]');
         $this->assertSelectorExists('a[href="/register"]');
+        $this->assertSelectorExists('form[action="/recherche"]');
     }
 
 
