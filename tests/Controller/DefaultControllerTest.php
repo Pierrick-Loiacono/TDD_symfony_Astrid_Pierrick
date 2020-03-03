@@ -28,9 +28,14 @@ class DefaultControllerTest extends WebTestCase
         ]);
 
         $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
         $this->assertSelectorNotExists('a[href="/login"]');
         $this->assertSelectorNotExists('a[href="/register"]');
         $this->assertSelectorExists('a[href="/logout"]');
+
+        $this->assertSelectorExists('a[href="/trajet/new"]');
+        $this->assertSelectorTextSame('a[href="/trajet/new"]', 'Nouveau trajet...');
 
         $client->clickLink('Déconnexion');
         $this->assertResponseRedirects('http://localhost/');
