@@ -31,6 +31,9 @@ class DefaultControllerTest extends WebTestCase
         $this->assertSelectorNotExists('a[href="/login"]');
         $this->assertSelectorNotExists('a[href="/register"]');
         $this->assertSelectorExists('a[href="/logout"]');
+
+        $client->clickLink('Déconnexion');
+        $this->assertResponseRedirects('http://localhost/');
     }
 
 
