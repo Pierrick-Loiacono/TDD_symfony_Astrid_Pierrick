@@ -4,8 +4,12 @@
 
 {% block body %}
 
-    <a href="{{ path('app_login') }}">Connexion</a>
-    <a href="{{ path('app_register') }}">S'inscrire</a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Connexion</a>
+        <a href="{{ path('app_register') }}">S'inscrire</a>
+    {% endif %}
 
     <form action="{{ path('recherche') }}" method="get" class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" name="recherche" type="search" placeholder="Rechercher..." aria-label="Rechercher">
