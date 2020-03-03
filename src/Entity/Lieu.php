@@ -36,11 +36,17 @@ class Lieu
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Trajet", mappedBy="lieu_depart")
      */
-    private $trajets;
+    private $departTrajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Trajet", mappedBy="lieu")
+     */
+    private $arriveeTrajets;
 
     public function __construct()
     {
-        $this->trajets = new ArrayCollection();
+        $this->departTrajets = new ArrayCollection();
+        $this->arriveeTrajets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,13 +95,13 @@ class Lieu
      */
     public function getTrajets(): Collection
     {
-        return $this->trajets;
+        return $this->departTrajets;
     }
 
     public function addTrajet(Trajet $trajet): self
     {
-        if (!$this->trajets->contains($trajet)) {
-            $this->trajets[] = $trajet;
+        if (!$this->departTrajets->contains($trajet)) {
+            $this->departTrajets[] = $trajet;
             $trajet->setLieuDepart($this);
         }
 
@@ -104,11 +110,42 @@ class Lieu
 
     public function removeTrajet(Trajet $trajet): self
     {
-        if ($this->trajets->contains($trajet)) {
-            $this->trajets->removeElement($trajet);
+        if ($this->departTrajets->contains($trajet)) {
+            $this->departTrajets->removeElement($trajet);
             // set the owning side to null (unless already changed)
             if ($trajet->getLieuDepart() === $this) {
                 $trajet->setLieuDepart(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Trajet[]
+     */
+    public function getArriveeTrajets(): Collection
+    {
+        return $this->arriveeTrajets;
+    }
+
+    public function addArriveeTrajet(Trajet $arriveeTrajet): self
+    {
+        if (!$this->arriveeTrajets->contains($arriveeTrajet)) {
+            $this->arriveeTrajets[] = $arriveeTrajet;
+            $arriveeTrajet->setLieu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArriveeTrajet(Trajet $arriveeTrajet): self
+    {
+        if ($this->arriveeTrajets->contains($arriveeTrajet)) {
+            $this->arriveeTrajets->removeElement($arriveeTrajet);
+            // set the owning side to null (unless already changed)
+            if ($arriveeTrajet->getLieu() === $this) {
+                $arriveeTrajet->setLieu(null);
             }
         }
 

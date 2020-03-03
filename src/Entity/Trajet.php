@@ -51,6 +51,11 @@ class Trajet
      */
     private $passagers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Lieu", inversedBy="arriveeTrajets")
+     */
+    private $lieu;
+
     public function __construct()
     {
         $this->passagers = new ArrayCollection();
@@ -143,6 +148,18 @@ class Trajet
         if ($this->passagers->contains($passager)) {
             $this->passagers->removeElement($passager);
         }
+
+        return $this;
+    }
+
+    public function getLieu(): ?Lieu
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?Lieu $lieu): self
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }
