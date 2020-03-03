@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Trajet;
 use App\Form\TrajetType;
 use App\Repository\TrajetRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ class TrajetController extends AbstractController
 {
     /**
      * @Route("/", name="trajet_index", methods={"GET"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function index(TrajetRepository $trajetRepository): Response
     {
@@ -27,6 +29,7 @@ class TrajetController extends AbstractController
 
     /**
      * @Route("/new", name="trajet_new", methods={"GET","POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function new(Request $request): Response
     {

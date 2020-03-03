@@ -13,12 +13,6 @@ class TrajetType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('places')
-            ->add('lieu_depart')
-            ->add('lieu_arrive')
-            ->add('conducteur')
-            ->add('passagers')
-            ->add('lieu')
         ;
     }
 

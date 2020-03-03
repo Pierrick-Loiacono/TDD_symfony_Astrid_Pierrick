@@ -28,6 +28,7 @@ class UserTestFixtures extends Fixture
         $user->setNom('Pierrick');
         $user->setPrenom('Pierrick');
         $user->setEmail('pierrick@test.fr');
+        $user->setRoles(['ROLE_USER']);
         $pass = $this->encoder->encodePassword($user, 'pa$$word');
         $user->setPassword($pass);
         $user->setUsername('username');
