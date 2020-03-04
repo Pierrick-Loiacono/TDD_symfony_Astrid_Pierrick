@@ -15,7 +15,7 @@ class TrajetControllerTest extends WebTestCase
 
         $this->assertNotEquals(200, $client->getResponse()->getStatusCode());
 
-//        $this->assertResponseRedirects('/login');
+        $this->assertResponseRedirects('/login');
     }
 
     public function testAllowedToUser()
@@ -34,6 +34,13 @@ class TrajetControllerTest extends WebTestCase
     // aller sur /trajet/liste
     // vérifier que le trajet exsite même date
     // vérifier que le conducteur est l'utilisateur courant
+
+    // scénario de test création de lieu
+    // aller sur création trajet
+    // suivre le lien nouveau lieu
+    // poster le formulaire de nouveau lieu
+    // revenir sur le création de trajet
+    // vérifier le lieu existe dans le input
 
 
 }
