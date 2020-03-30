@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrajetController extends AbstractController
 {
     /**
-     * @Route("/", name="trajet_index", methods={"GET"})
+     * @Route("/liste", name="trajet_index", methods={"GET"})
      * @Security("is_granted('ROLE_USER')")
      */
     public function index(TrajetRepository $trajetRepository): Response

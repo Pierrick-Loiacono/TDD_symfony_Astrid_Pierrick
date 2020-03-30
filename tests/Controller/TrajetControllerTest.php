@@ -29,9 +29,20 @@ class TrajetControllerTest extends WebTestCase
 
     }
 
+    public function testListeTrajet()
+    {
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => 'username',
+            'PHP_AUTH_PW' => 'pa$$word',
+        ]);
+        $crawler = $client->request('GET', '/trajet/liste');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
+    }
+
     // scénario test crétion de trajet
-    // poster le formulaire de création de trajets
-    // aller sur /trajet/liste
+    // poster le formulaire de création de trajets -- Fait
+    // aller sur /trajet/liste -- Fait
     // vérifier que le trajet exsite même date
     // vérifier que le conducteur est l'utilisateur courant
 
