@@ -3,10 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        {% include 'twig/css.html.twig' %}
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        {% include 'twig/js.html.twig' %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
