@@ -29,7 +29,7 @@ class TrajetControllerTest extends WebTestCase
 
     }
 
-    // scénario test crétion de projet
+    // scénario test crétion de trajet
     // poster le formulaire de création de trajets
     // aller sur /trajet/liste
     // vérifier que le trajet exsite même date
