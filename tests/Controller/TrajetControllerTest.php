@@ -80,7 +80,6 @@ class TrajetControllerTest extends WebTestCase
         ]);
         $this->assertEquals($user->getId(), $form['trajet[conducteur]']->getValue()); // On verifie qu'on a bien le conducteur passé dans le formulaire
         $crawler = $client->submit($form);
-
         // Récupération de la redirection après création du trajet vers la liste des trajet
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode()); // On verifie qu'on a bien un code 200
@@ -92,19 +91,6 @@ class TrajetControllerTest extends WebTestCase
 
 
     }
-
-    // scénario test crétion de trajet
-    // poster le formulaire de création de trajets
-    // aller sur /trajet/liste
-    // vérifier que le trajet exsite même date
-    // vérifier que le conducteur est l'utilisateur courant
-
-    // scénario de test création de lieu
-    // aller sur création trajet
-    // suivre le lien nouveau lieu
-    // poster le formulaire de nouveau lieu
-    // revenir sur le création de trajet
-    // vérifier le lieu existe dans le input
 
 
 }
