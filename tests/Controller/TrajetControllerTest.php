@@ -80,6 +80,13 @@ class TrajetControllerTest extends WebTestCase
         ]);
         $crawler = $client->submit($form);
 
+        // Récupération de la redirection après création du trajet vers la liste des trajet
+        $crawler = $client->followRedirect();
+        $this->assertEquals(200, $client->getResponse()->getStatusCode()); // On verifie qu'on a bien un code 200
+        $this->assertContains('/trajet/liste', $crawler->getUri()); // On verifie qu'on a bien un code 200
+
+
+
 
     }
 
