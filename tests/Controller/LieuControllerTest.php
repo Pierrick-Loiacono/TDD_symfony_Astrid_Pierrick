@@ -51,8 +51,9 @@ class LieuControllerTest extends WebTestCase
             'PHP_AUTH_USER' => $username,
             'PHP_AUTH_PW' => $password,
         ]);
-
         $crawler = $client->request('GET', '/lieu/new');
+
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $buttonCrawlerNode = $crawler->selectButton('Save');
 
@@ -63,13 +64,19 @@ class LieuControllerTest extends WebTestCase
         ]);
         $crawler = $client->submit($form);
 
+        $this->assertTrue($client->getResponse()->isRedirect()); // Check de la redirection
         // Récupération de la redirection après création du trajet vers la liste des trajet
         $crawler = $client->followRedirect();
         $this->assertEquals(200, $client->getResponse()->getStatusCode()); // On verifie qu'on a bien un code 200
         $this->assertContains('/lieu/liste', $crawler->getUri()); // On verifie qu'on a bien un code 200
 
-    }
+        // On vérifie qu'on a bien le nom du lieu passé dans le formulaire dans la page de la liste des lieux
+        $this->assertTrue($crawler->filter('html:contains(' . $form['lieu[nom]']->getValue() . ')')->count() > 0);
 
+//        $crawler = $client->request('GET', '/trajet/new');
+//        $this->assertInputValueSame($crawler->selectButton('Save')->form()['trajet[lieu_depart]']->getValue(), 1);
+
+    }
 
 
 }
