@@ -78,6 +78,7 @@ class TrajetControllerTest extends WebTestCase
             'trajet[places]' => 4,
             'trajet[conducteur]' => $user->getId(),
         ]);
+        $this->assertEquals($user->getId(), $form['trajet[conducteur]']->getValue()); // On verifie qu'on a bien le conducteur passé dans le formulaire
         $crawler = $client->submit($form);
 
         // Récupération de la redirection après création du trajet vers la liste des trajet
@@ -86,6 +87,8 @@ class TrajetControllerTest extends WebTestCase
         $this->assertContains('/trajet/liste', $crawler->getUri()); // On verifie qu'on a bien un code 200
 
 
+        $entityManager->close();
+        $entityManager = null;
 
 
     }
