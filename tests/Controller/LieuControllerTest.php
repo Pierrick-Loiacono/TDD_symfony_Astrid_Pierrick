@@ -32,7 +32,7 @@ class LieuControllerTest extends WebTestCase
 
     }
 
-    public function testListeTrajet()
+    public function testListeLieu()
     {
         $client = static::createClient([], [
             'PHP_AUTH_USER' => 'username',
@@ -42,5 +42,34 @@ class LieuControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
     }
+
+    public function testCreateLieu()
+    {
+        $username = 'username';
+        $password = 'pa$$word';
+        $client = static::createClient([], [
+            'PHP_AUTH_USER' => $username,
+            'PHP_AUTH_PW' => $password,
+        ]);
+
+        $crawler = $client->request('GET', '/lieu/new');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $buttonCrawlerNode = $crawler->selectButton('Save');
+
+        $form = $buttonCrawlerNode->form([
+            'lieu[nom]' => 'TestLieu',
+            'lieu[longitude]' => 10.2,
+            'lieu[latitude]' => 55.5,
+        ]);
+        $crawler = $client->submit($form);
+
+        // Récupération de la redirection après création du trajet vers la liste des trajet
+        $crawler = $client->followRedirect();
+        $this->assertEquals(200, $client->getResponse()->getStatusCode()); // On verifie qu'on a bien un code 200
+        $this->assertContains('/lieu/liste', $crawler->getUri()); // On verifie qu'on a bien un code 200
+
+    }
+
+
 
 }
